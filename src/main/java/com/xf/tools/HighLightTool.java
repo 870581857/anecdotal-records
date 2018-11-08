@@ -11,7 +11,13 @@ import java.util.regex.Pattern;
  */
 public class HighLightTool {
 
-    public String highlight(String key, String str) {
+    /**
+     * 字符串高亮处理
+     * @param key
+     * @param str
+     * @return
+     */
+    public static String highLight(String key, String str) {
 
         String styleStart = "<i style=\"color: #20a4f3;\">";
         String styleEnd = "</i>";
@@ -45,6 +51,7 @@ public class HighLightTool {
     }
 
     public static void main(String[] args) {
-
+        String highLightStr = highLight("java","java开发工程师");
+        System.out.println(highLightStr);
     }
 }
