@@ -1,4 +1,4 @@
-package com.xf.tools;
+package com.xf.tools.strtools;
 
 import java.util.ArrayList;
 import java.util.List;
