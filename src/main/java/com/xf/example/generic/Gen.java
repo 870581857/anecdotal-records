@@ -1,4 +1,4 @@
-package com.xf.example;
+package com.xf.example.generic;
 
 /**
  * https://www.jb51.net/article/127090.htm
