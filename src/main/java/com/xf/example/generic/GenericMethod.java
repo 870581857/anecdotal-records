@@ -1,5 +1,7 @@
 package com.xf.example.generic;
 
+import java.lang.reflect.Method;
+
 public class GenericMethod<T> {
 
     public <T> void print(T x) {
@@ -7,8 +9,14 @@ public class GenericMethod<T> {
     }
 
     public T getstr(T t){
-
-        return null;
+        try {
+            Method method = t.getClass().getMethod("contains",t.getClass());
+            Object o = method.invoke(t,"t");
+            System.out.println(o.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return t;
     }
 
     public static void main(String[] args) {
@@ -17,5 +25,7 @@ public class GenericMethod<T> {
         method.print(10);
         method.print('a');
         method.print(method);
+
+        method.getstr(" ");
     }
 }
