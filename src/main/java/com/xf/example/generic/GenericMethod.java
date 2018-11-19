@@ -8,18 +8,21 @@ public class GenericMethod<T> {
         System.out.println(x.getClass().getName());
     }
 
-    public T getstr(T t){
+    public Object getstr(T t){
         try {
-            Method method = t.getClass().getMethod("contains",t.getClass());
+            Class c = t.getClass();
+            Method method = c.getMethod("contains",CharSequence.class);
             Object o = method.invoke(t,"t");
             System.out.println(o.toString());
+            return o;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-        return t;
+       return null;
     }
 
     public static void main(String[] args) {
+        String str = new String("");
         GenericMethod method = new GenericMethod();
         method.print(" ");
         method.print(10);
@@ -27,5 +30,6 @@ public class GenericMethod<T> {
         method.print(method);
 
         method.getstr(" ");
+
     }
 }
