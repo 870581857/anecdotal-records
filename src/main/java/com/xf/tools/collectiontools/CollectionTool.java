@@ -11,20 +11,27 @@ public class CollectionTool<T> {
 
     /**
      * 遍历的时候漏掉某些元素
+     *
      * @param list
      * @return
      */
-    public List<T> removeOfFor(List<T> list){
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).equals("a"))
+    public List<T> removeOfFor(List<T> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals("a"))
                 list.remove(i);
         }
         return list;
     }
 
-    public List<T> removeOfForA(List<T> list){
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).equals("a")){
+    /**
+     * 可删除多个
+     *
+     * @param list
+     * @return
+     */
+    public List<T> removeOfForA(List<T> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals("a")) {
                 list.remove(i);
                 i--;
             }
@@ -35,12 +42,13 @@ public class CollectionTool<T> {
     /**
      * 删除元素后继续循环会报错误信息ConcurrentModificationException
      * 使用break跳出
+     *
      * @param list
      * @return
      */
-    public List<T> removeOfForE(List<T> list){
-        for(T x:list){
-            if(x.equals("del")){
+    public List<T> removeOfForE(List<T> list) {
+        for (T x : list) {
+            if (x.equals("del")) {
                 list.remove(x);
                 break;
             }
@@ -48,11 +56,17 @@ public class CollectionTool<T> {
         return list;
     }
 
-    public List<T> removeOfIterator(List<T> list){
+    /**
+     * 删除多个
+     *
+     * @param list
+     * @return
+     */
+    public List<T> removeOfIterator(List<T> list) {
         Iterator<T> it = list.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             T x = it.next();
-            if(x.equals("a")){
+            if (x.equals("a")) {
                 it.remove();
             }
         }
