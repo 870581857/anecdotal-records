@@ -1,14 +1,10 @@
-package com.xf.example.dynamic;
-
-import com.xf.example.dynamic.MyClassLoader;
+package com.xf.example.dynamic.classloader;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 
 public class MyTest {
 

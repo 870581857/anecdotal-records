@@ -1,4 +1,4 @@
-package com.xf.example.dynamic;
+package com.xf.example.dynamic.classloader;
 
 /**
  * 自定义一个类加载器，用于将字节码转换为class对象
