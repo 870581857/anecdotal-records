@@ -1,4 +1,4 @@
-package com.xf.example.dynamic;
+package com.xf.example.dynamic.classloader;
 
 /**
  * 程序猿类
