@@ -1,4 +1,4 @@
-package com.xf.example.dynamic.dynamicproxy;
+package com.xf.example.dynamic.javadynamicproxy;
 
 /**
  * 交通工具接口

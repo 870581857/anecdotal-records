@@ -1,4 +1,4 @@
-package com.xf.example.dynamic.dynamicproxy;
+package com.xf.example.dynamic.javadynamicproxy;
 /**
  * 电能车类，实现Rechargable，Vehicle接口
  */

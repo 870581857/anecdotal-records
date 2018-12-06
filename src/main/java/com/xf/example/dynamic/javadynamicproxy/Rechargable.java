@@ -1,4 +1,4 @@
-package com.xf.example.dynamic.dynamicproxy;
+package com.xf.example.dynamic.javadynamicproxy;
 
 /**
  * 可充电设备接口

@@ -1,4 +1,4 @@
-package com.xf.example.dynamic.dynamicproxy;
+package com.xf.example.dynamic.javadynamicproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
