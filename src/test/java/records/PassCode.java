@@ -3,6 +3,9 @@ package records;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by xf
@@ -13,7 +16,7 @@ public class PassCode {
     private final static char[] strDigits = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     private final static int base = 52;
-
+    private final static int lh = 6;
     /**
      * 加密
      **/
@@ -34,13 +37,24 @@ public class PassCode {
         for (int i = 0; i < out.size(); i++) {
             sb.append(strDigits[out.get(i)]);
         }
-        return sb.toString();
+
+        String tempStr = sb.toString();
+        int cl = lh - tempStr.length();
+        if(cl > 0){
+            Random random = new Random();
+            for(int i=0;i<cl;i++){
+                int r = random.nextInt(10);
+                tempStr = r + tempStr;
+            }
+        }
+        return tempStr;
     }
 
     /**
      * 解密
      **/
     public static Integer deCode(String enCode) {
+        enCode = enCode.replaceAll("[0-9]","");
         List<Integer> list = new ArrayList();
         char terms[] = enCode.toCharArray();
         for (int i = 0; i < terms.length; i++) {
@@ -60,9 +74,33 @@ public class PassCode {
     }
 
     public static void main(String[] args) {
-        int a = 934342234;
-        String out = enCode(a);
-        System.out.println(out);
-        System.out.println(deCode(out));
+//        int a = 19;
+//        String out = enCode(a);
+//        System.out.println(out);
+//        System.out.println(deCode(out));
+//
+//        pstr();
+
+        String testStr = "555dddhhAAAddd";
+        Pattern p = Pattern.compile("^([0-9]+|[a-zA-Z]+)[a-zA-Z]+$");
+        Matcher m = p.matcher(testStr);
+        System.out.println(m.find());
     }
+
+    /**
+     * 打乱字符串
+     * @return
+     */
+    public static String pstr(){
+        List<Character> listTemp = new ArrayList<>();
+        for(char a : strDigits){
+            listTemp.add(a);
+        }
+        Collections.shuffle(listTemp);
+        String str = listTemp.toString();
+        str = str.replaceAll(", ","', '").replaceAll("\\[","{'").replaceAll("\\]","'}");
+        System.out.println(str);
+        return str;
+    }
+
 }
