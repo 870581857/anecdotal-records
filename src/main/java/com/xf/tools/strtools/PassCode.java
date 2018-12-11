@@ -1,4 +1,4 @@
-package records;
+package com.xf.tools.strtools;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * 数字加密
  * Created by xf
  * 2018/12/7.
  */
@@ -74,17 +75,12 @@ public class PassCode {
     }
 
     public static void main(String[] args) {
-//        int a = 19;
-//        String out = enCode(a);
-//        System.out.println(out);
-//        System.out.println(deCode(out));
-//
-//        pstr();
-
-        String testStr = "555dddhhAAAddd";
-        Pattern p = Pattern.compile("^([0-9]+|[a-zA-Z]+)[a-zA-Z]+$");
-        Matcher m = p.matcher(testStr);
-        System.out.println(m.find());
+        int a = 19;
+        String out = enCode(a);
+        System.out.println(out);
+        System.out.println(deCode(out));
+        System.out.println(pstr());
+        System.out.println(verifyCode(out));
     }
 
     /**
@@ -101,6 +97,17 @@ public class PassCode {
         str = str.replaceAll(", ","', '").replaceAll("\\[","{'").replaceAll("\\]","'}");
         System.out.println(str);
         return str;
+    }
+
+    /**
+     * 验证加密字符串
+     * @param code
+     * @return
+     */
+    public static boolean verifyCode(String code){
+        Pattern p = Pattern.compile("^([0-9]+|[a-zA-Z]+)[a-zA-Z]+$");
+        Matcher m = p.matcher(code);
+        return m.find();
     }
 
 }
