@@ -1,24 +1,35 @@
 package records;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by DCJS
  * 2019/1/16.
  */
 public class Test {
+
     public static void main(String[] args) {
-        ttt();
-    }
+        String t1 = "2018-08-10";
+        String t2 = "2019-01-29";
+        try {
+            int result = daysBetween(t1,t2);
+            System.out.println(result);
+        } catch (ParseException e) {
 
-    public static int ttt(){
-        try{
-            System.out.println("11111111111111111");
-            return 1;
-        }catch (Exception e){
-            System.out.println("222222222222222222");
-        }finally {
-            System.out.println("333333333333333333");
         }
-
-        return 0;
     }
+
+    public static int daysBetween(String smdate, String bdate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(sdf.parse(smdate));
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(sdf.parse(bdate));
+        long time2 = cal.getTimeInMillis();
+        long between_days = (time2 - time1) / (1000 * 3600 * 24);
+        return Integer.parseInt(String.valueOf(between_days));
+    }
+
 }
