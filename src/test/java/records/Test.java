@@ -10,15 +10,9 @@ public class Test {
     }
 
     public static int ttt(){
-        try{
-            System.out.println("11111111111111111");
-            return 1;
-        }catch (Exception e){
-            System.out.println("222222222222222222");
-        }finally {
-            System.out.println("333333333333333333");
-        }
-
+        String tradeNo = "PgiqBYwrZ8CUmrqlTryq20190416";
+        String key = String.format("hash_payorders_%s", tradeNo.substring(24, 26));
+        System.out.println(key);
         return 0;
     }
 }

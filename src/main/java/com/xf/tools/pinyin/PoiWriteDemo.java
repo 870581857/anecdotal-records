@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,13 +17,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * Poi写Excel
  */
 public class PoiWriteDemo {
-    public static void main(String[] args) throws IOException {
-
-        String inFilePath = "d://需生成拼音及助记码商品名称表20190417-V1.xls";
-        String outFilePath = "d://poi.xls";
-        List<String> cellList = PoiReadDemo.readExeclToString(inFilePath);
-        creatExcelPinyin(cellList,outFilePath);
-    }
 
     public static void creatExcelPinyin(List<String> cellList,String outFilePath){
         // 创建工作薄
@@ -36,7 +30,12 @@ public class PoiWriteDemo {
         for (int row = 1; row <= cellList.size(); row++) {
             String oneCell = cellList.get(row-1);
 
-            Map<String,String> map = handleCell(oneCell);
+            Map<String,String> map = null;
+            try {
+                map = handleCell(oneCell);
+            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
+                badHanyuPinyinOutputFormatCombination.printStackTrace();
+            }
             String towCell = map.get("onecellStr");
             String thrCell = map.get("twocellStr");
             HSSFRow rows = sheet.createRow(row);
@@ -58,7 +57,10 @@ public class PoiWriteDemo {
 
     }
 
-    public static Map handleCell(String cellStr){
+    public static Map handleCell(String cellStr) throws BadHanyuPinyinOutputFormatCombination {
+
+        Set<String> ikStr = Ikanalyzer.ikstr(cellStr);
+
         Pattern p = Pattern.compile("[\\u4e00-\\u9fa5]");
         Matcher m = p.matcher(cellStr);
 
@@ -66,11 +68,10 @@ public class PoiWriteDemo {
         Map<String,String> mappinYin = new HashMap<>();
         while(m.find()){
             String oneStr = m.group();
-            String initials = PinYinUtils.getHanziInitials(oneStr);
-            String pinYin = PinYinUtils.getHanziPinYin(oneStr);
+//            String initials = PinYinUtils.getHanziInitials(oneStr);
+            String pinYin = PinYinUtils.getHanziPinYin(oneStr,ikStr);
             mappinYin.put(oneStr,pinYin);
-
-            mapinitials = mapinitials + initials;
+            mapinitials = mapinitials + pinYin.substring(0,1).toUpperCase();
         }
 
         for(Map.Entry map: mappinYin.entrySet()){

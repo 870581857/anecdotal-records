@@ -16,11 +16,6 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  * Poi 读 Excel
  */
 public class PoiReadDemo {
-    public static void main(String[] args) throws IOException,
-            InvalidFormatException {
-        String filePath = "d://需生成拼音及助记码商品名称表20190417-V1.xls";
-        readExeclToString(filePath);
-    }
 
     public static List<String> readExeclToString(String filePath){
         List<String> list = new ArrayList();
