@@ -18,15 +18,16 @@ public class Test {
         String tradeNo = "PgiqBYwrZ8CUmrqlTryq20190416";
         String key = String.format("hash_payorders_%s", tradeNo.substring(24, 26));
         System.out.println(key);
-        return 0;
         String t1 = "2018-08-10";
         String t2 = "2019-01-29";
+        int result = 0;
         try {
-            int result = daysBetween(t1,t2);
+            result = daysBetween(t1,t2);
             System.out.println(result);
         } catch (ParseException e) {
 
         }
+        return result;
     }
 
     public static int daysBetween(String smdate, String bdate) throws ParseException {
